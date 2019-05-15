@@ -40,4 +40,56 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
-console.log( employees );
+for (employee of employees) {
+  console.log(employee);
+}
+
+function employeeBonus(employee) {
+  let emp = {
+    name: employee.name,
+    bonusPercentage: percentCalc(employee) + finalBonus(employee), 
+    totalCompensation: (employee.annualSalary * finalBonus(employee)) + Number(employee.annualSalary)
+  }
+  //clear bonus percent!
+  return emp;
+}
+
+let bonusPercent = 0;
+
+function percentCalc(employee) {
+  //replace bonusPercent with local variable x
+  let x = 0
+  if (employee.reviewRating < 2) {
+    return x;
+  } else if (employee.reviewRating === 3) {
+    return x + 0.04;
+  } else if (employee.reviewRating === 4) {
+    return x + 0.06;
+  } else if (employee.reviewRating === 5){
+    return x + 0.1;
+  }
+  //add x to bonusPercent 
+  bonusPercent = bonusPercent + x; 
+  
+}
+
+function finalBonus(employee) {
+  if(employee.employeeNumber.length === 4){
+    return bonusPercent + 0.05;
+  } else if (employee.annualSalary > 65000 && bonusPercent > 0){
+    return bonusPercent - 0.01;
+  } else {
+    return bonusPercent;
+  }
+  
+}
+
+
+
+
+
+
+console.log(employeeBonus(employees[0]));
+console.log(employeeBonus(employees[1]));
+console.log(employeeBonus(employees[2]));
+console.log(employeeBonus(employees[3]));
