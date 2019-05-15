@@ -74,6 +74,7 @@ function percentCalc(employee) {
 }
 
 function finalBonus(employee) {
+  
   if(employee.employeeNumber.length === 4){
     return bonusPercent + 0.05;
   } else if (employee.annualSalary > 65000 && bonusPercent > 0){
@@ -82,7 +83,13 @@ function finalBonus(employee) {
     return bonusPercent;
   }
   
+  if (bonusPercent > 0.13){
+    return bonusPercent = 0.13;
+  } else {
+    return bonusPercent;
+  }
 }
+
 
 
 
